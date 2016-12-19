@@ -1,0 +1,8 @@
+[package]
+name = "part1"
+version = "0.1.0"
+authors = ["Rubén Durán Balda <ruduran@users.noreply.github.com>"]
+
+[[bin]]
+name = "part1"
+path = "src/main.rs"
