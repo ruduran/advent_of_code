@@ -1,0 +1,15 @@
+[package]
+name = "03"
+version = "0.1.0"
+authors = ["Rubén Durán Balda <ruduran@users.noreply.github.com>"]
+
+[dependencies]
+
+
+[[bin]]
+name = "part1"
+path = "src/bin/part1.rs"
+
+[[bin]]
+name = "part2"
+path = "src/bin/part2.rs"
