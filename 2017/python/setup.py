@@ -7,11 +7,10 @@ setup(
     name='adventofcode',
     description='Advent of Code 2017 - Python 3',
     version='0.1',
-    author='TODO',
-    author_email='TODO',
-    url='TODO',
+    url='https://github.com/ruduran/advent_of_code/',
     packages=find_packages('src'),
     install_requires=open(os.path.join(cwd, 'requirements.txt')).readlines(),
+    tests_require=open(os.path.join(cwd, 'test-requirements.txt')).readlines(),
     package_dir={
         '': 'src',
     },

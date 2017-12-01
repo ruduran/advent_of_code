@@ -3,7 +3,7 @@
 from . import BaseProcessor, get_file_name
 
 
-class ProcessorP1(BaseProcessor):
+class ProcessorP2(BaseProcessor):
     def process_number_list(self, numbers):
         total = 0
         half_lenght = int(len(numbers) / 2)
@@ -17,7 +17,7 @@ class ProcessorP1(BaseProcessor):
 
 
 def main():
-    processor = ProcessorP1(get_file_name())
+    processor = ProcessorP2(get_file_name())
     print(processor.process())
 
 
