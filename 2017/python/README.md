@@ -17,3 +17,7 @@ You'll find the scripts to run on `venv/bin` with the format `dayXX_partX`. The 
 ```bash
 ./venv/bin/day1_part2 data/day1/input
 ```
+
+## Puzzles
+
+* [Day 1](http://adventofcode.com/2017/day/1)
