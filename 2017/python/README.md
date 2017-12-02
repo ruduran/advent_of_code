@@ -30,3 +30,4 @@ deactivate
 ## Puzzles
 
 * [Day 1](http://adventofcode.com/2017/day/1)
+* [Day 2](http://adventofcode.com/2017/day/2)
