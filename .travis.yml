@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.5"
+before_install:
+  - cd 2017/python
+install:
+  - pip install -r requirements.txt -r test-requirements.txt
+script:
+  - flake8 src tests
+  - nosetests
