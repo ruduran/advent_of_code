@@ -16,8 +16,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'day1_part1 = aoc.day1.part1:main',
-            'day1_part2 = aoc.day1.part2:main',
+            'day01_part1 = aoc.day01.part1:main',
+            'day01_part2 = aoc.day01.part2:main',
         ],
     }
 )

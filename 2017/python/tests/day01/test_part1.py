@@ -1,6 +1,6 @@
 from . import BaseProcessorTester
 
-from aoc.day1.part1 import ProcessorP1
+from aoc.day01.part1 import ProcessorP1
 
 
 class TestProcessorP1(BaseProcessorTester):
