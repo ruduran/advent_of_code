@@ -1,11 +1,11 @@
-import unittest
+from . import BaseProcessorTester
 
 from aoc.day1.part1 import ProcessorP1
 
 
-class TestProcessorP1(unittest.TestCase):
+class TestProcessorP1(BaseProcessorTester):
     def setUp(self):
-        self.processor = ProcessorP1('')
+        self.set_processor(ProcessorP1)
 
     def test_process_number_list(self):
         tests = (
@@ -14,6 +14,4 @@ class TestProcessorP1(unittest.TestCase):
             (0, [1, 2, 3, 4]),
             (9, [9, 1, 2, 1, 2, 1, 2, 9]),
         )
-        for exp_sol, test_input in tests:
-            count = self.processor.process_number_list(test_input)
-            self.assertEqual(exp_sol, count)
+        self.call_process_number_list(tests)
