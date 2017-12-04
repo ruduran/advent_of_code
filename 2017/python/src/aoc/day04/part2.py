@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from itertools import permutations
+
 from . import BaseProcessor, get_file_name
 
 
@@ -16,20 +18,7 @@ class ProcessorP2(BaseProcessor):
         return True
 
     def generate_anagrams(self, word):
-        return {''.join(p) for p in self.permute(list(word))}
-
-    # Thanks stackoverflow, didn't feel like thinking this through
-    def permute(self, xs, low=0):
-        if low + 1 >= len(xs):
-            yield xs
-        else:
-            for p in self.permute(xs, low + 1):
-                yield p
-            for i in range(low + 1, len(xs)):
-                xs[low], xs[i] = xs[i], xs[low]
-                for p in self.permute(xs, low + 1):
-                    yield p
-                xs[low], xs[i] = xs[i], xs[low]
+        return {''.join(p) for p in permutations(word)}
 
 
 def main():
