@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-from . import BaseProcessor, get_file_name
+from . import BaseProcessor
+from aoc.utils import get_file_name
 
 
-class ProcessorP1(BaseProcessor):
+class Processor(BaseProcessor):
     def number_of_jumps_to_get_out(self, jump_list):
         index = 0
         jump_count = 0
@@ -16,7 +17,7 @@ class ProcessorP1(BaseProcessor):
 
 
 def main():
-    processor = ProcessorP1(get_file_name())
+    processor = Processor(get_file_name())
     print(processor.process())
 
 

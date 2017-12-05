@@ -1,6 +1,3 @@
-import argparse
-
-
 class BaseProcessor(object):
     def __init__(self, filename):
         self.filename = filename
@@ -15,10 +12,3 @@ class BaseProcessor(object):
 
     def is_passphrase_valid(self, passphrase):
         raise NotImplementedError()
-
-
-def get_file_name():
-    parser = argparse.ArgumentParser(description='Advent of Code Day 4')
-    parser.add_argument('file', help='input file')
-    args = parser.parse_args()
-    return args.file

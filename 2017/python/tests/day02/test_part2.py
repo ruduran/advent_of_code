@@ -1,11 +1,11 @@
 import unittest
 
-from aoc.day02.part2 import ProcessorP2
+from aoc.day02.part2 import Processor
 
 
 class TestProcessorP2(unittest.TestCase):
     def setUp(self):
-        self.processor = ProcessorP2('')
+        self.processor = Processor('')
 
     def test_calc_checksum(self):
         test_input = [

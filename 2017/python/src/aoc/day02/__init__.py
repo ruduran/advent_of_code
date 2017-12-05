@@ -1,6 +1,3 @@
-import argparse
-
-
 class BaseProcessor(object):
     def __init__(self, filename):
         self.filename = filename
@@ -16,10 +13,3 @@ class BaseProcessor(object):
 
     def _calc_checksum(self, file_data):
         raise NotImplementedError()
-
-
-def get_file_name():
-    parser = argparse.ArgumentParser(description='Advent of Code Day 2')
-    parser.add_argument('file', help='input file')
-    args = parser.parse_args()
-    return args.file

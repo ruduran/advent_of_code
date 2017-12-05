@@ -1,11 +1,11 @@
 from . import BaseProcessorTester
 
-from aoc.day01.part2 import ProcessorP2
+from aoc.day01.part2 import Processor
 
 
 class TestProcessorP2(BaseProcessorTester):
     def setUp(self):
-        self.set_processor(ProcessorP2)
+        self.set_processor(Processor)
 
     def test_process_number_list(self):
         tests = (

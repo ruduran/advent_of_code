@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-from . import BaseProcessor, get_file_name
+from . import BaseProcessor
+from aoc.utils import get_file_name
 
 
-class ProcessorP1(BaseProcessor):
+class Processor(BaseProcessor):
     def is_passphrase_valid(self, passphrase):
         words = passphrase.split()
         num_words = len(words)
@@ -12,7 +13,7 @@ class ProcessorP1(BaseProcessor):
 
 
 def main():
-    processor = ProcessorP1(get_file_name())
+    processor = Processor(get_file_name())
     print(processor.process())
 
 

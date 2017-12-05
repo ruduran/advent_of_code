@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-from . import BaseProcessor, get_file_name
+from . import BaseProcessor
+from aoc.utils import get_file_name
 
 
-class ProcessorP1(BaseProcessor):
+class Processor(BaseProcessor):
     def process_number_list(self, numbers):
         last_num = 0
         total = 0
@@ -18,7 +19,7 @@ class ProcessorP1(BaseProcessor):
 
 
 def main():
-    processor = ProcessorP1(get_file_name())
+    processor = Processor(get_file_name())
     print(processor.process())
 
 

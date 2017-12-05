@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-from . import BaseProcessor, get_file_name
+from . import BaseProcessor
+from aoc.utils import get_file_name
 
 
-class ProcessorP2(BaseProcessor):
+class Processor(BaseProcessor):
     def process_number_list(self, numbers):
         total = 0
         half_lenght = int(len(numbers) / 2)
@@ -17,7 +18,7 @@ class ProcessorP2(BaseProcessor):
 
 
 def main():
-    processor = ProcessorP2(get_file_name())
+    processor = Processor(get_file_name())
     print(processor.process())
 
 
