@@ -34,3 +34,4 @@ deactivate
 * [Day 3](http://adventofcode.com/2017/day/3)
 * [Day 4](http://adventofcode.com/2017/day/4)
 * [Day 5](http://adventofcode.com/2017/day/5)
+* [Day 6](http://adventofcode.com/2017/day/6)
