@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from collections import defaultdict
-from itertools import groupby
 
 from aoc.utils import get_file_name
 
@@ -12,7 +11,7 @@ class Processor(BaseProcessor):
     def process(self):
         self.load_data()
         self.balance_towers()
-        return self.balanced_value
+        return self.balanced
 
     def balance_towers(self):
         self.get_and_balance_weight(self.root)
@@ -37,7 +36,7 @@ class Processor(BaseProcessor):
                         weight_diff = -weight_diff
                     prog_name = prog_list[0]
                     program['children'][prog_name]['weight'] += weight_diff
-                    self.balanced_value = program['children'][prog_name]['weight']
+                    self.balanced = program['children'][prog_name]['weight']
                     weight_sum += weight_diff
 
         return weight_sum + program['weight']

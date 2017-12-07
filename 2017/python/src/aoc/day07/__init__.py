@@ -9,7 +9,8 @@ class BaseProcessor(object):
         self.programs = {}
         self.root = None
 
-        re_string = '(?P<name>[a-z]+) \((?P<weight>\d+)\)( -> (?P<children>[a-z]+(, [a-z]+)*))?'
+        re_string = '(?P<name>[a-z]+) \((?P<weight>\d+)\)' \
+                    '( -> (?P<children>[a-z]+(, [a-z]+)*))?'
         self.program_re = re.compile(re_string)
 
     def add_program(self, program_str):
