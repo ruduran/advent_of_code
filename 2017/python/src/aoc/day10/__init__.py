@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-
-from aoc.utils import get_file_name
-
-
-class Processor(object):
+class BaseProcessor(object):
     MARKS = 256
 
     def __init__(self, filename):
@@ -14,16 +9,12 @@ class Processor(object):
         self.skip_size = 0
 
     def process(self):
-        self.load_lenghts()
-        self.process_hash()
-        return self.number_list[0] * self.number_list[1]
+        raise NotImplementedError()
 
     def load_lenghts(self):
-        with open(self.filename) as f:
-            line = f.readline().strip()
-            self.lenghts = [int(n) for n in line.split(',')]
+        raise NotImplementedError()
 
-    def process_hash(self):
+    def run_round(self):
         for lenght in self.lenghts:
             if lenght <= self.MARKS:
                 self.reverse(lenght)
@@ -38,7 +29,6 @@ class Processor(object):
         start = self.current_position
         end = self.current_position + lenght
         to_reverse = self.number_list[start:end]
-        # self.number_list[start:end] = to_reverse[::-1]
         if len(to_reverse) < lenght:
             end %= self.MARKS
             to_reverse += self.number_list[0:end]
@@ -51,12 +41,3 @@ class Processor(object):
             self.number_list[0:end] = reversed_list[division:]
         else:
             self.number_list[start:end] = reversed_list
-
-
-def main():
-    processor = Processor(get_file_name())
-    print(processor.process())
-
-
-if __name__ == '__main__':
-    main()
