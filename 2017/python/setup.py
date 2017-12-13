@@ -36,6 +36,8 @@ setup(
             'day11 = aoc.day11:main',
             'day12_part1 = aoc.day12.part1:main',
             'day12_part2 = aoc.day12.part2:main',
+            'day13_part1 = aoc.day13.part1:main',
+            'day13_part2 = aoc.day13.part2:main',
         ],
     }
 )
