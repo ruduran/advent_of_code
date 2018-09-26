@@ -1,8 +1,10 @@
 language: python
 python:
-  - "3.5"
+  - "3.6"
+env:
+  - YEAR_PATH="2017/python"
 before_install:
-  - cd 2017/python
+  - cd $YEAR_PATH
 install:
   - pip install -r requirements.txt -r test-requirements.txt
 script:
