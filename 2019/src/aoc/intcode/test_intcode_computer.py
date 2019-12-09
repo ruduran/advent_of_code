@@ -1,3 +1,4 @@
+import asyncio
 from unittest import TestCase
 
 from aoc.intcode.intcode_computer import IntcodeComputer
@@ -6,6 +7,9 @@ from aoc.intcode.intcode_computer import IntcodeComputer
 class TestIntcodeComputer(TestCase):
     def setUp(self) -> None:
         self.computer = IntcodeComputer()
+
+    def _run_instruction(self):
+        return asyncio.get_event_loop().run_until_complete(self.computer.run_instruction())
 
     def test_run_opcode_in_memory_ops(self):
         subtests = [
@@ -18,7 +22,7 @@ class TestIntcodeComputer(TestCase):
                 self.computer.load_memory(program)
 
                 # when
-                result = self.computer.run_instruction()
+                result = self._run_instruction()
 
                 # then
                 self.assertTrue(result)
@@ -29,7 +33,7 @@ class TestIntcodeComputer(TestCase):
         self.computer.load_memory([99])
 
         # when
-        result = self.computer.run_instruction()
+        result = self._run_instruction()
 
         # then
         self.assertFalse(result)

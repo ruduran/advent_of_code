@@ -6,19 +6,19 @@ from .memory import Memory, MemoryAccessError
 
 
 OPCODES_WITH_2_PARAMS = {1, 2, 5, 6, 7, 8}
-OPCODES_WITH_1_PARAMS = {4}
+OPCODES_WITH_1_PARAMS = {4, 9}
 OPCODES_WITH_DESTINATION = {1, 2, 3, 7, 8}
 
 
 class IntcodeComputer:
     def __init__(self, input_queue: asyncio.Queue = None, output_queue: asyncio.Queue = None):
         self._cursor = 0
+        self._relative_base = 0
         self._memory = Memory()
         self._input_queue = input_queue
         self._output_queue = output_queue
 
     def load_memory(self, program: List[int]):
-        self._cursor = 0
         self._memory.load_memory(program)
 
     def get_memory_position(self, position: int) -> int:
@@ -31,6 +31,9 @@ class IntcodeComputer:
         asyncio.run(self.run_async())
 
     async def run_async(self):
+        self._cursor = 0
+        self._relative_base = 0
+
         """Execute the currently loaded program starting from the beginning"""
         while await self.run_instruction():
             pass
@@ -49,21 +52,26 @@ class IntcodeComputer:
         raw_opcode = self._get_next_memory_value()
         opcode = raw_opcode % 100
         param_modes = raw_opcode // 100
-        param_mode1 = param_modes % 10
-        param_mode2 = (param_modes // 10) % 10
 
         instruction_info = {
             "opcode": opcode,
         }
 
         if opcode in OPCODES_WITH_1_PARAMS | OPCODES_WITH_2_PARAMS:
-            instruction_info["param1"] = self._get_param(param_mode1)
+            param_mode = param_modes % 10
+            param_modes //= 10
+            instruction_info["param1"] = self._get_param(param_mode)
 
         if opcode in OPCODES_WITH_2_PARAMS:
-            instruction_info["param2"] = self._get_param(param_mode2)
+            param_mode = param_modes % 10
+            param_modes //= 10
+            instruction_info["param2"] = self._get_param(param_mode)
 
         if opcode in OPCODES_WITH_DESTINATION:
             instruction_info["destination"] = self._get_next_memory_value()
+            param_mode = param_modes % 10
+            if param_mode == 2:
+                instruction_info["destination"] += self._relative_base
 
         return instruction_info
 
@@ -73,6 +81,8 @@ class IntcodeComputer:
             return self.get_memory_position(value)
         elif param_mode == 1:
             return value
+        elif param_mode == 2:
+            return self.get_memory_position(value + self._relative_base)
         else:
             raise NotImplementedError("Unsupported param mode '{}'".format(param_mode))
 
@@ -100,6 +110,7 @@ class IntcodeComputer:
             6: self._jump_if_false,
             7: self._less_than,
             8: self._equals,
+            9: self._adjust_relative_base,
             99: self._exit
         }.get(opcode)
 
@@ -161,6 +172,11 @@ class IntcodeComputer:
         value = 1 if param1 == param2 else 0
 
         self._set_memory_position(destination, value)
+
+    async def _adjust_relative_base(self, instruction_info: Dict) -> None:
+        param = instruction_info["param1"]
+
+        self._relative_base += param
 
     @staticmethod
     async def _exit(_):
