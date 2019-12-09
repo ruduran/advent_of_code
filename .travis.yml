@@ -1,15 +1,14 @@
 language: python
 python:
-  - "3.6"
+  - "3.8"
 env:
-  - YEAR_PATH="2017/python"
+  - YEAR_PATH="2019"
 before_install:
   - cd $YEAR_PATH
 install:
-  - pip install -r requirements.txt -r test-requirements.txt
+  - pip install -r requirements-dev.txt
 script:
-  - flake8 src tests
-  - nosetests
+  - flake8 src
 
 notifications:
   email:
