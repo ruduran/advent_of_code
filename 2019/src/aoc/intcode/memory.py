@@ -1,4 +1,4 @@
-from copy import deepcopy
+from collections import defaultdict
 from typing import List
 
 
@@ -8,10 +8,11 @@ class MemoryAccessError(Exception):
 
 class Memory:
     def __init__(self):
-        self._memory = []
+        self._memory = defaultdict(int)
 
     def load_memory(self, memory: List[int]) -> None:
-        self._memory = deepcopy(memory)
+        for k, value in enumerate(memory):
+            self._memory[k] = value
 
     def get_memory_position(self, position: int) -> int:
         try:
