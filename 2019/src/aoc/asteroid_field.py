@@ -14,10 +14,10 @@ class AsteroidField:
                     self._asteroids[(x, y)] = None
 
         for asteroid in self._asteroids:
-            self._asteroids[asteroid] = self._asteroids_in_sight_from(asteroid)
+            self._asteroids[asteroid] = self.get_asteroids_in_sight_from(asteroid)
 
-    def _asteroids_in_sight_from(self, origin_asteroid: Tuple[int, int]) -> int:
-        asteroids_in_sight = 0
+    def get_asteroids_in_sight_from(self, origin_asteroid: Tuple[int, int]) -> set:
+        asteroids_in_sight = set()
         o_x, o_y = origin_asteroid
         for asteroid in self._asteroids:
             if origin_asteroid == asteroid:
@@ -52,10 +52,14 @@ class AsteroidField:
                         visible = False
                         continue
             if visible:
-                asteroids_in_sight += 1
+                asteroids_in_sight.add(asteroid)
 
         return asteroids_in_sight
 
     def get_best_asteroid(self):
-        best_asteroid = max(self._asteroids, key=self._asteroids.get)
+        best_asteroid = max(self._asteroids, key=lambda a: len(self._asteroids.get(a)))
         return best_asteroid, self._asteroids[best_asteroid]
+
+    def destroy(self, asteroids_to_destroy: Iterable[Tuple[int, int]]):
+        for asteroid in asteroids_to_destroy:
+            del self._asteroids[asteroid]
