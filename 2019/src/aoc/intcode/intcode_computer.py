@@ -178,6 +178,8 @@ class IntcodeComputer:
 
         self._relative_base += param
 
-    @staticmethod
-    async def _exit(_):
+    async def _exit(self, _):
+        if self._output_queue:
+            await self._output_queue.put(None)
+
         return False
