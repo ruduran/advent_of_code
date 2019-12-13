@@ -30,9 +30,11 @@ class MoonSystem:
             self._move()
 
     def find_period(self) -> int:
-        i = 1
-        axis_statuses = [{self._build_axis_status(a)} for a in range(3)]
+        first_occurrence = 0
+        axis_statuses = [{self._build_axis_status(a): 0} for a in range(3)]
         period = [0]*3
+
+        i = 1
         while not all(period):
             self.iterate()
 
@@ -40,13 +42,14 @@ class MoonSystem:
                 if not period[a]:
                     status = self._build_axis_status(a)
                     if status in axis_statuses[a]:
-                        period[a] = i
+                        first_occurrence = axis_statuses[a][status]
+                        period[a] = i - first_occurrence
                     else:
-                        axis_statuses[a].add(status)
+                        axis_statuses[a][status] = i
 
             i += 1
 
-        return ilcd(period)
+        return ilcd(period) + first_occurrence
 
     def _build_axis_status(self, axis_num: int) -> Tuple:
         return tuple(chain([(p[axis_num], v[axis_num]) for p, v in self._moon_velocity_list]))
