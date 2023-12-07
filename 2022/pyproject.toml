@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "2022"
+version = "0.1.0"
+description = ""
+authors = ["Rubén Durán Balda <ruduran@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
